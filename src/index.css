@@ -122,3 +122,12 @@ li:hover {
     height: 150px;
   }
 }
+
+.active_btn {
+  background-color: var(--primary);
+}
+
+.inactive_btn {
+  background-color: transparent;
+  border: 1px solid var(--primary);
+}

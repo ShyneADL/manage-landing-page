@@ -8,5 +8,22 @@ import IG from "./icon-instagram.svg";
 import Pin from "./icon-pinterest.svg";
 import Twitter from "./icon-twitter.svg";
 import YT from "./icon-youtube.svg";
+import Open from "./icon-hamburger.svg";
+import Close from "./icon-close.svg";
+import bgImg from "./bg-footer.svg";
 
-export { Li, Bravo, Watts, Shanai, HeroImg, FB, IG, YT, Twitter, Pin };
+export {
+  Li,
+  Bravo,
+  Open,
+  Close,
+  Watts,
+  Shanai,
+  HeroImg,
+  bgImg,
+  FB,
+  IG,
+  YT,
+  Twitter,
+  Pin,
+};

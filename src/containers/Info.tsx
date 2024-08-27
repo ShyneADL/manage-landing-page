@@ -1,6 +1,10 @@
 import React, { useRef } from "react";
 import { infoText } from "../components/data.ts";
 import Button from "../components/Button";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
 
 interface InfoText {
   id: string;
@@ -10,11 +14,52 @@ interface InfoText {
 
 const Info: React.FC = () => {
   const leftRef = useRef(null);
-  const rightRef = useRef(null);
+  const rightRef = useRef<HTMLDivElement[]>([]);
+  const infoRef = useRef(null);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: infoRef.current,
+        start: "top 400px",
+      },
+    });
+
+    tl.fromTo(
+      leftRef.current,
+      {
+        opacity: 0,
+        y: 200,
+      },
+      {
+        opacity: 1,
+        y: 0,
+      }
+    );
+    tl.fromTo(
+      rightRef.current,
+      {
+        x: 200,
+        opacity: 0,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        stagger: 0.5,
+        ease: "expo",
+      }
+    );
+  });
 
   return (
-    <div className="flex lg:flex-row flex-col items-start lg:justify-between lg:gap-0 gap-10 lg:section__padding py-[70px] px-4">
-      <div className="flex flex-col lg:items-start items-center gap-6 lg:w-[50%] w-full">
+    <div
+      ref={infoRef}
+      className="flex relative lg:flex-row flex-col items-start lg:justify-between lg:gap-0 gap-10 section__padding overflow-hidden"
+    >
+      <div
+        ref={leftRef}
+        className="flex flex-col lg:items-start items-center gap-6 lg:w-[50%] w-full"
+      >
         <h2 className="text-blue text-[32px] font-bold lg:text-left text-center lg:w-[380px] w-[300px]">
           What's different about Manage?
         </h2>
@@ -26,8 +71,16 @@ const Info: React.FC = () => {
       </div>
       {/* Desktop Version */}
       <div className="lg:flex hidden flex-col items-start gap-6 lg:w-[50%] w-full">
-        {infoText.map((item: InfoText) => (
-          <div key={item.id} className="flex items-start gap-4">
+        {infoText.map((item: InfoText, index: number) => (
+          <div
+            ref={(el) => {
+              if (el) {
+                rightRef.current[index] = el; // Assign ref to the array
+              }
+            }}
+            key={item.id}
+            className="flex items-start gap-4"
+          >
             <Button text={item.id} color="primary" />
             <div className="flex flex-col items-start gap-6">
               <h3 className="title_text">{item.title}</h3>
@@ -43,7 +96,7 @@ const Info: React.FC = () => {
             <div className="flex items-center gap-2 relative">
               <Button text={item.id} color="primary" />
               <h3 className="title_text">{item.title}</h3>
-              <div className="absolute rounded-full px-8 py-4 bg-paleRed z-[-1] h-full min-w-[375px] overflow-hidden" />
+              <div className="absolute rounded-full px-8 py-4 bg-paleRed z-[-1] h-full min-w-[425px] overflow-hidden" />
             </div>
             <div className="flex flex-col items-start gap-6">
               <p className="small_text lg:w-[450px] w-full">{item.text}</p>

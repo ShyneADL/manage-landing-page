@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../components/Button";
 import { SMLinks, footerLinks } from "../components/data";
 import InputBox from "../components/InputBox";
+import { bgImg } from "../assets";
 
 interface SMLink {
   id: number;
@@ -16,11 +17,12 @@ interface footerLink {
 const Footer: React.FC = () => {
   return (
     <div className="pt-12 flex flex-col items-start">
-      <div className="footer__padding lg:flex-row flex-col bg-primary flex items-center justify-between lg:gap-0 gap-6">
+      <div className="footer__padding lg:flex-row flex-col bg-primary flex items-center justify-between lg:gap-0 gap-6 relative overflow-hidden">
         <h2 className="text-white lg:text-left text-center text-[32px] font-bold lg:w-[400px] w-full">
           Simplify how your team works today.
         </h2>
         <Button text="Get Started" color="" />
+        <img src={bgImg} className="absolute bottom-0 left-52 xl:flex hidden" />
       </div>
       <footer className="section__padding flex lg:flex-row flex-col-reverse lg:gap-0 gap-9 lg:items-start items-center bg-darkBlue">
         {/* Copyright text, first here because of col-reverse property to render it at the bottom */}
