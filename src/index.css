@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: hsl(12, 88%, 59%);
+  --blue: hsl(228, 39%, 23%);
+  --greyBlue: hsl(227, 12%, 61%);
+  --darkBlue: hsl(233, 12%, 13%);
+  --paleRed: hsl(13, 100%, 96%);
+  --lightGray: hsl(0, 0%, 98%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Be Vietnam Pro", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: scroll;
+}
+
+body {
+  height: 100vh;
+  background: white;
+}
+
+li {
+  transition: color 0.5s ease;
+}
+
+li:hover {
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.shadow_box {
+  transition: box-shadow 0.5s;
+}
+
+/* .shadow_box:hover {
+  box-shadow: 2px 2px 12px 12px hsl(13, 100%, 96%);
+} */
+.button {
+  cursor: pointer;
+  position: relative;
+  transition: filter 0.3s ease; /* Smooth transition */
+}
+
+.button:hover {
+  filter: brightness(1.3) saturate(0.8);
+}
+
+.section__padding {
+  padding: 48px 128px;
+  width: 100%;
+}
+.footer__padding {
+  padding: 48px 128px;
+  width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .section__padding {
+    padding: 24px;
+  }
+  .footer__padding {
+    padding: 72px 50px;
+  }
+}
+
+.small_text {
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--greyBlue);
+}
+
+.title_text {
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--blue);
+}
+@media screen and (max-width: 450px) {
+  .small_text {
+    font-size: 14px;
+    line-height: 26px;
+  }
+  .title_text {
+    font-size: 16px;
+  }
+}
+
+.testimonials::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonials {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  row-gap: 16px;
+  column-gap: 50px;
+  height: 150px;
+  width: 550px;
+}
+
+@media screen and (max-width: 450px) {
+  .footer {
+    width: 72%;
+    row-gap: 8px;
+    column-gap: 90px;
+    height: 150px;
+  }
+}
